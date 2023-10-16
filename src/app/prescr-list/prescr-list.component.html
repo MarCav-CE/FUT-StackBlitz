@@ -1,0 +1,30 @@
+<h2>Prescrizioni</h2>
+<div class="container-fluid">
+  <div class="row m-1" *ngFor="let Paziente of Pazienti">
+    <button class="col-2 btn btn-primary" (click)="PazClick(Paziente.Nome)">
+      {{ Paziente.Nome }}
+    </button>
+    <div class="row m-1" *ngFor="let Prescr of Prescrizioni">
+      <div class="col-3 m-0" *ngIf="Prescr.Paziente == Paziente">
+        {{ Prescr.PrFarmaco.Nome }} , {{ Prescr.PrFarmaco.Formato }}, Quantità:
+        {{ Prescr.Qta }}
+      </div>
+      <div
+        class="col-8 m-0"
+        style="display: flex;flex-direction: row;"
+        *ngIf="Prescr.Paziente == Paziente"
+      >
+        <div
+          class="m-1 p-0"
+          *ngFor="let Giorno of Prescr.Giorni"
+          style="display: flex;flex-direction: column;"
+        >
+          <div class="giorno">{{ Giorno }}</div>
+          <input type="checkbox" checked class="m-0 giorno" />
+          <input type="checkbox" class="m-0 giorno" />
+          <!-- <input type="text" class="m-0 giorno" /> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
